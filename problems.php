@@ -42,12 +42,6 @@
 					<tbody>
 					<?php
 						global $bankid;
-						$servername = "localhost";
-						$username = "root";
-						$password = "changke0328";
-						$dbname = "banks";
-						// 创建连接
-						$conn = new mysqli($servername, $username, $password, $dbname);
 						$sql = "SELECT bid, name, onechoice, multichoice, fillblank FROM banks WHERE bid=" . $bankid;
 						$result = $conn->query($sql);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -85,12 +79,6 @@
 					<tbody>
 					<?php
 						global $bankid;
-						$servername = "localhost";
-						$username = "root";
-						$password = "changke0328";
-						$dbname = "banks";
-						// 创建连接
-						$conn = new mysqli($servername, $username, $password, $dbname);
 						$sql = "SELECT bid, name, onechoice, multichoice, fillblank FROM banks WHERE bid=" . $bankid;
 						$result = $conn->query($sql);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -128,12 +116,6 @@
 					<tbody>
 					<?php
 						global $bankid;
-						$servername = "localhost";
-						$username = "root";
-						$password = "changke0328";
-						$dbname = "banks";
-						// 创建连接
-						$conn = new mysqli($servername, $username, $password, $dbname);
 						$sql = "SELECT bid, name, onechoice, multichoice, fillblank FROM banks WHERE bid=" . $bankid;
 						$result = $conn->query($sql);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
