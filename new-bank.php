@@ -1,39 +1,36 @@
 <?php
-include "config.php";
-header('Content-Type:text/html;charset=utf-8');
-
-if(!isset($_SESSION['uname'])){
-    header('Location: login.php');
-}
-$nameError="";
-if(isset($_POST['qb_name'])){
-    $qb_name = mysqli_real_escape_string($con, $_POST['qb_name']);
-    if(qb_name==""){
-        $nameError="题库名不能为空";
-    }
-    else{
-        $str = "select count(*) from banks where name='" . $qb_name . "' ";
-        $result = mysqli_query($con, $str);
-        $pass = mysqli_fetch_row($result);
-        $pa = $pass[0];
-        $str2 = "select count(*) from banks";
-        $result2 = mysqli_query($con, $str2);
-        $pass2 = mysqli_fetch_row($result2);
-        $pa2 = $pass2[0]+1;
-        if ($pa > 0){
-            $nameError="题库名重复";
-        }
-        else{
-            $sql_query = "insert into banks values(" . $pa2 .",'" . $qb_name. " ',0,0,0)";
-            if($con-> query($sql_query)===true){
-                echo "<script type=" . "\"" . "text/javascript" . "\"" . ">" . "window.location=" . "\"" . "createqb-success.php" . "\"" . "</script>";
-            }
-            else{
-                $nameError="新建失败";
-            }
-        }
-    }
-}
+	include "config.php";
+	header('Content-Type:text/html;charset=utf-8');
+	session_start();
+	if (!isset($_SESSION['uname'])) {
+		header('Location: login.php');
+	}
+	$nameError = "";
+	if (isset($_POST['qb_name'])) {
+		$qb_name = mysqli_real_escape_string($con, $_POST['qb_name']);
+		if (qb_name == "") {
+			$nameError = "题库名不能为空";
+		} else {
+			$str = "select count(*) from banks where name='" . $qb_name . "' ";
+			$result = mysqli_query($con, $str);
+			$pass = mysqli_fetch_row($result);
+			$pa = $pass[0];
+			$str2 = "select count(*) from banks";
+			$result2 = mysqli_query($con, $str2);
+			$pass2 = mysqli_fetch_row($result2);
+			$pa2 = $pass2[0] + 1;
+			if ($pa > 0) {
+				$nameError = "题库名重复";
+			} else {
+				$sql_query = "insert into banks values(" . $pa2 . ",'" . $qb_name . " ',0,0,0)";
+				if ($con->query($sql_query) === true) {
+					echo "<script type=" . "\"" . "text/javascript" . "\"" . ">" . "window.location=" . "\"" . "createqb-success.php" . "\"" . "</script>";
+				} else {
+					$nameError = "新建失败";
+				}
+			}
+		}
+	}
 ?>
 
 <html lang="en">
@@ -45,7 +42,8 @@ if(isset($_POST['qb_name'])){
     <title>Contact</title>
     <!-- web fonts -->
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900&display=swap"
+          rel="stylesheet">
     <!-- //web fonts -->
     <!-- Template CSS -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -64,11 +62,12 @@ if(isset($_POST['qb_name'])){
                     <p><a>请在右侧填写题库信息</a></p>
                 </div>
                 <div class="map-content-9 col-md-7 mt-5 mt-md-0">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
                             <label class="contact-textfield-label" for="w3lSubject">题库名</label>
-                            <input type="text" class="form-control" name="qb_name" id="w3lSubject" placeholder="" required="">
-                            <span class="error"><?php echo $nameError;?></span>
+                            <input type="text" class="form-control" name="qb_name" id="w3lSubject" placeholder=""
+                                   required="">
+                            <span class="error"><?php echo $nameError; ?></span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-contact">创建</button>
                     </form>
@@ -78,8 +77,8 @@ if(isset($_POST['qb_name'])){
     </div>
     <div class="map">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059445135!2d-74.25986613799748!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e3!4m0!4m0!5e0!3m2!1sen!2sin!4v1570181661801!5m2!1sen!2sin"
-            allowfullscreen=""></iframe>
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059445135!2d-74.25986613799748!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e3!4m0!4m0!5e0!3m2!1sen!2sin!4v1570181661801!5m2!1sen!2sin"
+                allowfullscreen=""></iframe>
     </div>
 </section>
 <!-- //contacts -->
@@ -166,7 +165,9 @@ if(isset($_POST['qb_name'])){
 
             <div class="midd-footer-28 align-center py-lg-4 py-3 mt-5">
                 <div class="container">
-                    <p class="copy-footer-28 text-center">Copyright &copy; 2020.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                    <p class="copy-footer-28 text-center">Copyright &copy; 2020.Company name All rights reserved.<a
+                                target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                    </p>
                 </div>
             </div>
         </div>

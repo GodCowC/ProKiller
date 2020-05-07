@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
-    session_destroy();
-
-    header('Location: home.php');?>
+	include 'config.php';
+	session_destroy();
+	header('Location: home.php');
+?>
