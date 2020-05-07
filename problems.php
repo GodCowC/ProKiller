@@ -33,7 +33,7 @@
 						$result = $conn->query($sql);
 						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 						echo $row["name"];
-						$conn->close(); ?></h3> </p>
+						?></h3> </p>
 			</div>
 			<div class="row">
 				<p>
@@ -51,7 +51,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = onechoice.php?pid=" . $tok . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
+							echo "<td><a href = onechoice.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
 							$tok = strtok(",");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
@@ -66,7 +66,6 @@
 							echo "<td>该题库下没有单项选择题哦~</td>";
 						}
 						echo "</tr>";
-						$conn->close();
 					?>
 					</tbody>
 				</table>
@@ -88,7 +87,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = multichoice.php?pid=" . $tok . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
+							echo "<td><a href = onechoice.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
 							$tok = strtok(" ");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
@@ -103,7 +102,6 @@
 							echo "<td>该题库下没有多项选择题哦~</td>";
 						}
 						echo "</tr>";
-						$conn->close();
 					?>
 					</tbody>
 				</table>
@@ -125,7 +123,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = fillblank.php?pid=" . $tok . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
+							echo "<td><a href = fillblank.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
 							$tok = strtok(" ");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
@@ -140,7 +138,6 @@
 							echo "<td>该题库下没有填空题哦~</td>";
 						}
 						echo "</tr>";
-						$conn->close();
 					?>
 					</tbody>
 				</table>
