@@ -1,7 +1,11 @@
 <?php
 	include "config.php";
-	header('Content-Type:text/html;charset=utf-8');
-	session_start();
+$con = mysqli_connect($host, $user, $password, $dbname);
+// Check connection
+        if (!$con) {
+                die("Connection failed: " . mysqli_connect_error());
+        }	
+header('Content-Type:text/html;charset=utf-8');
 	if (!isset($_SESSION['uname'])) {
 		header('Location: login.php');
 	}
@@ -22,7 +26,7 @@
 			if ($pa > 0) {
 				$nameError = "题库名重复";
 			} else {
-				$sql_query = "insert into banks values(" . $pa2 . ",'" . $qb_name . " ',0,0,0)";
+				$sql_query = "insert into banks values(" . $pa2 . ",'" . $qb_name . " ',0,0,0,'". $_SESSION['uname'] ."', 0)";
 				if ($con->query($sql_query) === true) {
 					echo "<script type=" . "\"" . "text/javascript" . "\"" . ">" . "window.location=" . "\"" . "createqb-success.php" . "\"" . "</script>";
 				} else {

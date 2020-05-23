@@ -1,9 +1,8 @@
 <?php
-	session_start();
 	echo '<div class="w3l-bootstrap-header fixed-top">
 	<nav class="navbar navbar-expand-lg navbar-light p-2">
     <div class="container">
-      <a class="navbar-brand" href="home.php">还没起名字QAQ</a>
+      <a class="navbar-brand" href="home.php">ProKiller</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

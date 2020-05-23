@@ -38,6 +38,8 @@
 			<div class="row">
 				<p>
 				<h3>单项选择题：</h3>
+				<a href=<?php global $bankid; echo '"new-onechoice.php?bankid=' . $bankid . '"'; ?> class="btn btn-secondary btn-theme">添加新题目！</a>
+</div><div class="row py-md-1">
 				<table class="table table-bordered" align="center" style="table-layout:fixed">
 					<tbody>
 					<?php
@@ -51,7 +53,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = onechoice.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
+							echo "<td><a href = onechoice.php?bankid=". $bankid . "&pid=" . $cnt . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
 							$tok = strtok(",");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
