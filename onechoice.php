@@ -16,14 +16,39 @@
 	<link rel="stylesheet" href="assets/css/style-starter.css">
 	<script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<?php
-		global $pid;
-		$pid = 1;
-		if (isset($_GET["pid"]))
-			$pid = $_GET["pid"]; ?>
+		global $bankid, $pcnt, $pid;
+                $bankid = 1;
+		$pcnt = 1;
+$pid = 1;
+		if (isset($_GET["bankid"]))
+			$bankid = $_GET["bankid"]; 
+                if (isset($_GET["pid"]))
+                        $pcnt = $_GET["pid"];
+                $str = "SELECT bid, onechoice FROM banks WHERE bid=" . $bankid;
+                $result = $conn->query($str);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $str = $row["onechoice"];
+                $tok = strtok($str, ",");
+while ($tok != false) {
+							$cnt++;
+														if ($cnt == $pcnt){
+								$pid = $tok;
+break;}$tok = strtok(",");
+							}
+?>
 	<?php
-		function judge()
-		{
-		}
+if (isset($_POST['answer']))
+{
+    global $bankid, $pid, $pcnt;
+    $bankid = $_SESSION['bid'];
+    unset($_SESSION['bid']);
+    $pid = $_SESSION['pid'];
+
+    unset($_SESSION['pid']);
+    $pcnt = $_SESSION['pcnt'];
+
+    unset($_SESSION['pcnt']);
+}
 	?>
 </head>
 <script type="text/javascript"
@@ -44,29 +69,50 @@ tex2jax: {inlineMath: [['$','$'], ['\(','\)']]}
 			</div>
 			<div class="row py-md-1">
 				<?php
-					global $pid;
+					global $bankid, $pcnt, $pid;
 					$sql = "SELECT pid, text, choices, answer FROM onechoice WHERE pid=" . $pid;
 					$result = $conn->query($sql);
 					$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 					$str = $row["text"];
-					echo $str;
+					echo $pcnt . ". " . $str;
 					echo "</div>";
 					$str = $row["choices"];
 					$tok = strtok($str, "\n");
 					$cnt = 0;
-					echo '<form action=" "><table><tbody>';
+if (!isset($_SESSION))
+session_start();
+$_SESSION['pid'] = $pid;
+$_SESSION['bid'] = $bankid;
+$_SESSION['pcnt'] = $pcnt;
+					echo '<form method="post" action="onechoice.php"><table><tbody>';
 					while ($tok != false) {
 						$cnt = $cnt + 1;
-						echo '<tr><td><input name="answer" type="radio" class="py-md-1" value="' . $cnt . '" /></td><td>' . chr($cnt + 64) . ". " . $tok . "</td></tr>";
+						echo '<tr><td><input name="answer" type="radio" class="py-md-1" value="' . chr(64 + $cnt) . '" /></td><td>' . chr($cnt + 64) . ". " . $tok . "</td></tr>";
 						$tok = strtok("\n");
 					}
 					echo "</tbody></table>";
 					echo '<div class="row py-md-2"><input type="submit" value="提交答案" class="btn btn-primary btn-theme"></div>';
 					echo '</form>';
-					$conn->close();
+			
 				?>
 				</p>
-				<div class="row py-md-2" id="show"></div>
+				<div class="row py-md-2" id="show">
+<?php if (isset($_POST['answer']))
+{
+    global $pid;
+     $sql = "SELECT pid, answer FROM onechoice WHERE pid=" . $pid;
+
+                                        $result = $conn->query($sql);
+
+                                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$ans = $_POST['answer'];
+$correct =$row['answer'];
+if ($ans == $correct)
+    echo "恭喜您，回答正确";
+else 
+    echo "回答错误，答案为" . $correct . "，而您选了" . $ans;
+}
+?></div>
 			</div>
 		
 		</div>
