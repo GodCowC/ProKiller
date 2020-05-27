@@ -65,15 +65,6 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-lg-4 mt-5">
-				<div class="s-block">
-					<a href="#blog-single.html" class="d-block p-lg-4 p-3"> <img src="assets/images/s3.png" alt=""
-					                                                             class="img-fluid"/>
-						<h3 class="my-3">模拟考试</h3>
-						<p class="">用户可以参加网站提供的模拟考试功能，巩固学习成果，另外试题的选取会根据你的答题记录动态改变，打造专属于你的试卷。</p>
-					</a>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -81,64 +72,6 @@
 <!-- content-with-photo17 -->
 
 
-<!-- content-with-photo17 -->
-<div class="w3l-index-block4">
-	<div class="features-bg py-5">
-		<!-- features15 block -->
-		<div class="container py-md-3">
-			<div class="heading text-center mx-auto">
-				<h3 class="head">今日好题</h3>
-			</div>
-			<div class="row">
-				<div class="col-md-12 features15-col-text">
-					<a href="#url" class="d-flex flex-wrap feature-unit align-items-center">
-						<div class="col-sm-9 mt-sm-0 mt-4">
-							<div class="features15-para">
-								<h4>Mobile Apps</h4>
-								<p>It is a long established fact that a reader will be distracted by the readable
-									content.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			
-			</div>
-			<div>
-				<!-- features15 block -->
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- content-with-photo17 -->
-<div class="w3l-index-block4">
-	<div class="features-bg py-5">
-		<!-- features15 block -->
-		<div class="container py-md-3">
-			<div class="heading text-center mx-auto">
-				<h3 class="head">做题达人</h3>
-			</div>
-			<div class="row">
-				<div class="col-md-12 features15-col-text">
-					<a href="#url" class="d-flex flex-wrap feature-unit align-items-center">
-						<div class="col-sm-9 mt-sm-0 mt-4">
-							<div class="features15-para">
-								<h4>Mobile Apps</h4>
-								<p>It is a long established fact that a reader will be distracted by the readable
-									content.</p>
-							</div>
-						</div>
-					</a>
-				</div>
-			
-			</div>
-			<div>
-				<!-- features15 block -->
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <!-- move top -->

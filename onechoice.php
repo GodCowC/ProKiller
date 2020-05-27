@@ -17,6 +17,9 @@
 	<script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<?php
 		global $bankid, $pcnt, $pid, $totalcnt;
+if (!isset($_GET["bankid"]) || !isset($_GET["pid"]))
+	if (!isset($_SESSION["bid"]))
+		echo "<script>history.back();</script>";
                 $bankid = 1;
 		$pcnt = 1;
 $pid = 1;
@@ -36,21 +39,33 @@ while ($tok != false) {
 							}
 $totalcnt = $cnt;
 ?>
-	<?php
+<?php
+
 if (isset($_POST['answer']))
+
 {
+
     global $bankid, $pid, $pcnt;
+
     $bankid = $_SESSION['bid'];
+
     unset($_SESSION['bid']);
+
     $pid = $_SESSION['pid'];
 
+
+
     unset($_SESSION['pid']);
+
     $pcnt = $_SESSION['pcnt'];
 
+
+
     unset($_SESSION['pcnt']);
+
 }
-	?>
-</head>
+
+	?></head>
 <script type="text/javascript"
         src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">

@@ -17,6 +17,11 @@
 	<script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<?php
 		global $bankid, $pcnt, $pid, $cnt;
+if (!isset($_GET["bankid"]) || !isset($_GET["pid"]))
+
+        if (!isset($_SESSION["bid"]))
+
+                echo "<script>history.back();</script>";
                 $bankid = 1;
 		$pcnt = 1;
 $pid = 1;
