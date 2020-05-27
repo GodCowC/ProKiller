@@ -15,9 +15,6 @@
           <li class="nav-item">
             <a class="nav-link" href="question-bank.php">题库</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="exam.php">考试</a>
-          </li>
         </ul>';
 	if (isset($_SESSION['uname'])) {
 		echo '<div class="form-inline">

@@ -26,7 +26,7 @@ header('Content-Type:text/html;charset=utf-8');
 			if ($pa > 0) {
 				$nameError = "题库名重复";
 			} else {
-				$sql_query = "insert into banks values(" . $pa2 . ",'" . $qb_name . " ',0,0,0,'". $_SESSION['uname'] ."', 0)";
+				$sql_query = "insert into banks values(" . $pa2 . ",'" . $qb_name . " ','','','','". $_SESSION['uname'] ."', 0)";
 				if ($con->query($sql_query) === true) {
 					echo "<script type=" . "\"" . "text/javascript" . "\"" . ">" . "window.location=" . "\"" . "createqb-success.php" . "\"" . "</script>";
 				} else {

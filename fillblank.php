@@ -4,9 +4,9 @@
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
-	<meta name="单项选择题" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="填空题" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<title>单项选择题</title>
+	<title>填空题</title>
 	<!-- web fonts -->
 	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
 	<link href="http://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900&display=swap"
@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="assets/css/style-starter.css">
 	<script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<?php
-		global $bankid, $pcnt, $pid, $totalcnt;
+		global $bankid, $pcnt, $pid, $cnt;
                 $bankid = 1;
 		$pcnt = 1;
 $pid = 1;
@@ -24,17 +24,16 @@ $pid = 1;
 			$bankid = $_GET["bankid"]; 
                 if (isset($_GET["pid"]))
                         $pcnt = $_GET["pid"];
-                $str = "SELECT bid, onechoice FROM banks WHERE bid=" . $bankid;
+                $str = "SELECT bid, fillblank FROM banks WHERE bid=" . $bankid;
                 $result = $conn->query($str);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                $str = $row["onechoice"];
+                $str = $row["fillblank"];
                 $tok = strtok($str, ",");
 while ($tok != false) {
 							$cnt++;
 														if ($cnt == $pcnt){
 								$pid = $tok;}$tok = strtok(",");
 							}
-$totalcnt = $cnt;
 ?>
 	<?php
 if (isset($_POST['answer']))
@@ -65,33 +64,25 @@ tex2jax: {inlineMath: [['$','$'], ['\(','\)']]}
 	<div class="content py-5">
 		<div class="container">
 			<div class="row py-md-5">
-				<p><h5>这是一道单项选择题，在下列选项中，有且仅有一个是正确答案。</h5>
+				<p><h5>这是一道填空题，请将你的答案填入下方空格内。</h5>
 			</div>
 			<div class="row py-md-1">
 				<?php
 					global $bankid, $pcnt, $pid;
-					$sql = "SELECT pid, text, choices, answer FROM onechoice WHERE pid=" . $pid;
+					$sql = "SELECT pid, text, answer FROM fillblank WHERE pid=" . $pid;
 					$result = $conn->query($sql);
 					$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 					$str = $row["text"];
 					echo $pcnt . ". " . $str;
 					echo "</div>";
-					$str = $row["choices"];
-					$tok = strtok($str, "\n");
-					$cnt = 0;
 if (!isset($_SESSION))
 session_start();
 $_SESSION['pid'] = $pid;
 $_SESSION['bid'] = $bankid;
 $_SESSION['pcnt'] = $pcnt;
-					echo '<form method="post" action="onechoice.php"><table><tbody>';
-					while ($tok != false) {
-						$cnt = $cnt + 1;
-						echo '<tr><td><input name="answer" type="radio" class="py-md-1" value="' . chr(64 + $cnt) . '" /></td><td>' . chr($cnt + 64) . ". " . $tok . "</td></tr>";
-						$tok = strtok("\n");
-					}
-					echo "</tbody></table>";
-					echo '<div class="row py-md-2"><input type="submit" value="提交答案" class="btn btn-primary btn-theme"></div>';
+echo '<form method="post" action="fillblank.php">';
+echo '<input name="answer" class="py-md-1"></input>';					
+				echo '<div class="row py-md-2"><input type="submit" value="提交答案" class="btn btn-primary btn-theme"></div>';
 					echo '</form>';
 			
 				?>
@@ -100,7 +91,7 @@ $_SESSION['pcnt'] = $pcnt;
 <?php if (isset($_POST['answer']))
 {
     global $pid;
-     $sql = "SELECT pid, answer FROM onechoice WHERE pid=" . $pid;
+     $sql = "SELECT pid, answer FROM fillblank WHERE pid=" . $pid;
 
                                         $result = $conn->query($sql);
 
@@ -110,17 +101,18 @@ $correct =$row['answer'];
 if ($ans == $correct)
     echo "恭喜您，回答正确";
 else 
-    echo "回答错误，答案为" . $correct . "，而您选了" . $ans;
+    echo "回答错误，答案为" . $correct . "，而您的答案为" . $ans;
 }
 ?></div>
-<div class="row"><?php global $bankid, $pcnt; if (isset($_POST['answer']) && $pcnt > 1) echo "<a href=onechoice.php?bankid=".$bankid."&pid=".($pcnt-1)." class=\"btn btn-success\">上一题</a>";?><?php global $bankid, $pcnt, $totalcnt; 
-$str = "SELECT bid, onechoice FROM banks WHERE bid=" . $bankid;
+<div class="row"><?php global $bankid, $pcnt; if (isset($_POST['answer']) && $pcnt > 1) echo "<a href=fillblank.php?bankid=".$bankid."&pid=".($pcnt-1)." class=\"btn btn-success\">上一题</a>";?><?php global $bankid, $pcnt, $totalcnt; 
+$str = "SELECT bid, fillblank FROM banks WHERE bid=" . $bankid;
 
                 $result = $conn->query($str);
-
+if (!$result)
+{} else{
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-                $str = $row["onechoice"];
+                $str = $row["fillblank"];
 $tok = strtok($str, ",");
 $cnt = 0;
 while ($tok != false) {
@@ -130,7 +122,7 @@ while ($tok != false) {
                                                         $tok = strtok(",");
 
                                                         }
-if (isset($_POST['answer']) && $pcnt < $cnt) echo "<a href=onechoice.php?bankid=".$bankid."&pid=".($pcnt+1)." class=\"btn btn-success\">下一题</a>";?></div>
+if (isset($_POST['answer']) && $pcnt < $cnt) echo "<a href=fillblank.php?bankid=".$bankid."&pid=".($pcnt+1)." class=\"btn btn-success\">下一题</a>";}?></div>
 			</div>
 		
 		</div>

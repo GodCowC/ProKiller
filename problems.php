@@ -76,6 +76,7 @@
 			<div class="row">
 				<p>
 				<h3>多项选择题：</h3>
+<a href=<?php global $bankid; echo '"new-multichoice.php?bankid=' . $bankid . '"'; ?> class="btn btn-secondary btn-theme">添加新题目！</a>
 				<table class="table table-bordered" align="center" style="table-layout:fixed">
 					<tbody>
 					<?php
@@ -89,7 +90,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = onechoice.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
+							echo "<td><a href = multichoice.php?bankid=". $bankid . "&pid=" . $cnt . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
 							$tok = strtok(" ");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
@@ -112,7 +113,8 @@
 			<div class="row">
 				<p>
 				<h3>填空题：</h3>
-				<table class="table table-bordered" align="center" style="table-layout:fixed">
+<a href=<?php global $bankid; echo '"new-fillblank.php?bankid=' . $bankid . '"'; ?> class="btn btn-secondary btn-theme">添加新题目！</a>	
+			<table class="table table-bordered" align="center" style="table-layout:fixed">
 					<tbody>
 					<?php
 						global $bankid;
@@ -125,7 +127,7 @@
 						echo "<tr>";
 						while ($tok != false) {
 							$cnt++;
-							echo "<td><a href = fillblank.php?bankid=". $bankid . "pid=" . $cnt . " class=\"btn btn-primary btn-theme\">" . $cnt . "</a></td>";
+							echo "<td><a href = fillblank.php?bankid=". $bankid . "&pid=" . $cnt . " class=\"btn btn-dark\">" . $cnt . "</a></td>";
 							$tok = strtok(" ");
 							if ($cnt % 10 == 0 && $tok == true) {
 								echo "</tr><tr>";
