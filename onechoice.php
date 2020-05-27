@@ -18,7 +18,7 @@
 	<?php
 		global $bankid, $pcnt, $pid, $totalcnt;
 if (!isset($_GET["bankid"]) || !isset($_GET["pid"]))
-	if (!isset($_SESSION["bid"]))
+	if (!isset($_POST["answer"]))
 		echo "<script>history.back();</script>";
                 $bankid = 1;
 		$pcnt = 1;

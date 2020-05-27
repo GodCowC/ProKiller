@@ -58,13 +58,30 @@
 			</div>
 			<div class="col-lg-4 col-md-6 mt-5">
 				<div class="s-block">
-					<a href="#blog-single.html" class="d-block p-lg-4 p-3"> <img src="assets/images/s2.png" alt=""
+					<a href="question-bank.php" class="d-block p-lg-4 p-3"> <img src="assets/images/s2.png" alt=""
 					                                                             class="img-fluid"/>
-						<h3 class="my-3">上传试题</h3>
-						<p class="">试题可以由用户动态的修改和上传，保证题库的实时性。</p>
+						<h3 class="my-3">查看题库</h3>
+						<p class="">在这里查看迄今为止的所有题库，遨游题海。</p>
 					</a>
 				</div>
 			</div>
+<div class="col-lg-4 col-md-6 mt-5">
+
+                                <div class="s-block">
+
+                                        <a href="problems.php?bankid=4" class="d-block p-lg-4 p-3"> <img src="assets/images/s3.png" alt=""
+
+                                                                                                     class="img-fluid"/>
+
+                                                <h3 class="my-3">查看试题</h3>
+
+                                                <p class="">在这里查看科目一考试的全部试题；你也可以仿照这一题库，建立属于自己的专属题库。</p>
+
+                                        </a>
+
+                                </div>
+
+                        </div>
 		</div>
 	</div>
 </section>
